@@ -21,6 +21,10 @@ import {Navbar, Nav} from 'react-bootstrap';
 // Uses the HTML5 history API (pushState, replaceState and the popstate event) to keep your UI in sync with the URL
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
+// imports the Create and Read classes
+import { Create } from './components/create';
+import { Read } from './components/read';
+
 // App class - no need to use extends 'React.Component' just Component as Component is already imported
 class App extends Component {
 
@@ -46,8 +50,8 @@ class App extends Component {
         <br />        
         <Switch>
           <Route path='/' component={Content} exact/>
-          <Route path='/create' component={Header} exact/>
-          <Route path='/read' component={Footer} exact/>
+          <Route path='/create' component={Create} exact/>
+          <Route path='/read' component={Read} exact/>
         </Switch>
         </div>
       </Router>      
