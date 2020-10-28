@@ -4,35 +4,25 @@ import React from 'react';
 // import Movies component
 import { Movies } from './movies';
 
+// http client make request and get a response back get method
+import axios from 'axios';
+
 // Read class
 export class Read extends React.Component{
 
     // state object - stores JSON object of JSON collection of movie information
     state = {
-        movies: [
-            {
-            "Title": "Avengers: Infinity War",
-            "Year": "2018",
-            "imdbID": "tt4154756",
-            "Type": "movie",
-            "Poster": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@."
-            },
-            {
-            "Title": "Captain America: Civil War",
-            "Year": "2016",
-            "imdbID": "tt3498820",
-            "Type": "movie",
-            "Poster": "https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@."
-            },
-            {
-            "Title": "Charlie Wilson's War",
-            "Year": "2007",
-            "imdbID": "tt0472062",
-            "Type": "movie",
-            "Poster": "https://m.media-amazon.com/images/M/MV5BMTgwMDgwMDc4MF5BMl5BanBnXkFtZTYwOTU3MDM4."
-            }
-        ]
+        movies: [ ]
+    };
 
+    componentDidMount(){
+        axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032')
+        .then(Response => {
+            this.setState({movies:Response.data.Search});
+        })
+        .catch((error)=>{
+            console.log(error)
+        });
     }
 
     //render() method is the only required method in a class component, called by default
