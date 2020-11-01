@@ -4,23 +4,26 @@ import React from 'react';
 // import Movies component
 import { Movies } from './movies';
 
-// http client make request and get a response back get method
-import axios from 'axios';
+// http client make request and get a response back get method (axios can send and retrieve data)
+import axios from 'axios'; // needs to be installed in project - npm install axios
 
 // Read class
 export class Read extends React.Component{
 
     // state object - stores JSON object of JSON collection of movie information
+    // movies is now = to an empty array
     state = {
         movies: [ ]
     };
 
+    // component lifecycle hook, gets called every time the component gets mounted/active in the view
     componentDidMount(){
+        // make axios call to go and get data from this url, return promise and set it equal to our state
         axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032')
-        .then(Response => {
-            this.setState({movies:Response.data.Search});
+        .then(response => { // fulfilled state
+            this.setState({movies:response.data.Search});
         })
-        .catch((error)=>{
+        .catch((error)=>{ // rejected state
             console.log(error)
         });
     }
