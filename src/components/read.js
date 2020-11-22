@@ -13,15 +13,15 @@ export class Read extends React.Component{
     // state object - stores JSON object of JSON collection of movie information
     // movies is now = to an empty array
     state = {
-        movies: [ ]
+        movies: []
     };
 
     // component lifecycle hook, gets called every time the component gets mounted/active in the view
     componentDidMount(){
-        // make axios call to go and get data from this url, return promise and set it equal to our state
-        axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032')
-        .then(response => { // fulfilled state
-            this.setState({movies:response.data.Search});
+        // make axios call to go and get data from this url, return promise and set it equal to our state        
+        axios.get('http://localhost:4000/api/movies')
+        .then((response)=>{ // fulfilled state
+            this.setState({ movies: response.data.movies}); // array is called movies
         })
         .catch((error)=>{ // rejected state
             console.log(error)

@@ -1,5 +1,6 @@
 // import React - allows components to be defined as classes or functions.
 import React from 'react';
+import axios from 'axios'; // http client/server - communitates through http on the web
 
 // Create class
 export class Create extends React.Component {
@@ -50,6 +51,21 @@ export class Create extends React.Component {
             + this.state.Title + "\n"
             + this.state.Year + "\n"
             + this.state.Poster);
+
+            // object newMovie
+            const newMovie = {
+                title: this.state.Title,
+                year: this.state.Year,
+                poster: this.state.Poster
+            }
+            // asyn post request to this URL, passing object newMovie up - returns a promise
+            axios.post('http://localhost:4000/api/movies', newMovie)
+            .then((res)=>{
+                console.log(res);
+            })
+            .catch((err)=>{
+                console.log(err);
+            });
     }
 
     //render() method is the only required method in a class component, called by default
